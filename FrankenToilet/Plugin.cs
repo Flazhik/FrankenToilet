@@ -1,11 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using BepInEx;
 using BepInEx.Logging;
 using FrankenToilet.Core;
 using HarmonyLib;
-using JetBrains.Annotations;
 using UnityEngine;
 using static FrankenToilet.Core.LogHelper;
 
@@ -22,16 +22,45 @@ public sealed class Plugin : BaseUnityPlugin
         LogInfo("Welcome to Frankenstein's Toilet...");
         gameObject.hideFlags = HideFlags.DontSaveInEditor;
         var harmony = new Harmony(MyPluginInfo.PLUGIN_GUID);
-        var startupPatchers = typeof(Plugin).Assembly
-                                            .GetTypes()
-                                            .Where(static t => t.GetCustomAttribute<PatchOnEntryAttribute>() != null);
-        foreach (var startupPatcher in startupPatchers)
-            harmony.PatchAll(startupPatcher);
+        var entryPointMethods = new List<MethodInfo>();
+        foreach (var type in typeof(Plugin).Assembly
+                                           .GetTypes())
+        {
+            if (type.GetCustomAttribute<EntryPointAttribute>() != null)
+            {
+                var entries = type
+                             .GetMethods(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic)
+                             .Where(static mi => mi.GetCustomAttribute<EntryPointAttribute>() != null).ToArray();
+                switch (entries.Length)
+                {
+                    case > 1:
+                        LogError($"Type {type.FullName} has multiple entry points defined. Only one is allowed.");
+                        break;
+                    case 0:
+                        LogError($"Type {type.FullName} is marked as an entry point but has no methods marked with EntryPointAttribute.");
+                        break;
+                    case 1 when entries[0].GetParameters().Length != 0:
+                        LogError($"Entry point method {type.FullName}.{entries[0].Name} must have no parameters.");
+                        break;
+                    case 1:
+                        entryPointMethods.Add(entries[0]); // idc abt return values
+                        break;
+                }
+            }
+            if (type.GetCustomAttribute<PatchOnEntryAttribute>() != null) harmony.PatchAll(type);
+        }
         LogInfo("Patches applied");
-        OnPluginAwake.Invoke();
+        foreach (var method in entryPointMethods)
+        {
+            LogInfo($"Invoking entry point: {method.DeclaringType?.FullName}.{method.Name}");
+            try
+            {
+                method.Invoke(null, null);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
     }
-
-    /// Event invoked when the plugin awakes
-    [PublicAPI]
-    internal static event Action OnPluginAwake = static () => { };
 }
