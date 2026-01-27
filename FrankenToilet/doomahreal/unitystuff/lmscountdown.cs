@@ -1,5 +1,6 @@
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
+using FrankenToilet.Core; // For MonoSingleton
 
 public class LmsCountdown : MonoBehaviour
 {
@@ -7,11 +8,13 @@ public class LmsCountdown : MonoBehaviour
     public TextMeshProUGUI timerText;
 
     float currentTime;
+    bool triggered;
 
     void Start()
     {
         currentTime = startTimeInSeconds;
         UpdateDisplay();
+        triggered = false;
     }
 
     void Update()
@@ -22,6 +25,16 @@ public class LmsCountdown : MonoBehaviour
         if (currentTime < 0f) currentTime = 0f;
 
         UpdateDisplay();
+
+        if (currentTime <= 0f && !triggered)
+        {
+            triggered = true;
+            var nm = MonoSingleton<NewMovement>.Instance;
+            if (nm != null)
+            {
+                nm.GetHurt(9999, false);
+            }
+        }
     }
 
     void UpdateDisplay()
