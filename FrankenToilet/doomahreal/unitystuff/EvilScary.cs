@@ -126,7 +126,7 @@ public class EvilScary : MonoBehaviour
 
         if (other.CompareTag("Enemy"))
         {
-            other.GetComponent<EnemyIdentifier>().Death();
+            other.GetComponent<EnemyIdentifier>().InstaKill();
             sfxSource.PlayOneShot(jumpscareSfx);
             return;
         }
