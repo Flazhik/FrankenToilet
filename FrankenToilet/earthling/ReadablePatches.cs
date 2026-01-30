@@ -33,5 +33,16 @@ public static class ReadablePatches
 ░▐██░░██░▀▄▐░▀▌░░░▀█▀▌░░░▐▀▐▄▀
 ░░██▌▐█▌░▐░▀▀▌▌░░▄░▌░▌▄░░▌▐
 """";
+
+        AudioSource audioSource = __instance.gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+        audioSource.clip = FishProvider.GetFish("Chen").worldObject.GetComponentInChildren<AudioSource>().clip;
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch("StartScan")]
+    public static void HonkifiesYourBook(Readable __instance)
+    {
+        __instance.gameObject.GetComponent<AudioSource>().Play();
     }
 }
