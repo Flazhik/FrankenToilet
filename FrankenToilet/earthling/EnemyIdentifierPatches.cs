@@ -9,6 +9,23 @@ namespace FrankenToilet.earthling;
 [HarmonyPatch(typeof(EnemyIdentifier))]
 public class EnemyIdentifierPatches
 {
+    [HarmonyPostfix]
+    [HarmonyPatch("Start")]
+    public static void MakeFilthBlue(EnemyIdentifier __instance) {
+        if (__instance.enemyType != EnemyType.Filth) return;
+
+        string texture1 = "Assets/Bundles/toiletonfire/filthmouthopen.png";
+        string texture2 = "Assets/Bundles/toiletonfire/filthmouthclosed.png";
+
+        Renderer renderer = __instance.transform.Find("ZombieFilth/Melee_Husk/").GetComponent<Renderer>();
+        ZombieMelee zm = __instance.gameObject.GetComponent<ZombieMelee>();
+
+        renderer.material.mainTexture = AssetBundleHelper.LoadAsset<Texture2D>(texture1);
+        zm.biteMaterial.mainTexture = AssetBundleHelper.LoadAsset<Texture2D>(texture2);
+        zm.originalMaterial.mainTexture = AssetBundleHelper.LoadAsset<Texture2D>(texture1);
+    }
+
+
     [HarmonyPrefix]
     [HarmonyPatch("Death", new Type[]{typeof(bool)})]
     public static void SpawnFishOnDeath(EnemyIdentifier __instance) 
