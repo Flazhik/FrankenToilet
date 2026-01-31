@@ -137,6 +137,11 @@ namespace itemMod
             airheadsIcon.SetActive(false);
             abilityIcons.Add(airheadsIcon);
 
+            // fifth ability, gatorade: index 4
+            gatoradeIcon = GameObject.Find(itemCanvas.name + "/" + itemBox.name + "/gatoradeicon");
+            gatoradeIcon.SetActive(false);
+            abilityIcons.Add(gatoradeIcon);
+
             foreach (GameObject ability in abilityIcons)
             {
                 ability.AddComponent<HudOpenEffect>();
@@ -214,19 +219,35 @@ namespace itemMod
             // ability 3, random buff
             else if (abilityIndex == 3)
             {
+                // grabs a random status effect, 33% chance
                 int buffRandomIndex = UnityEngine.Random.Range(0, 3);
                 LogHelper.LogInfo("airhead index : " + buffRandomIndex);
-                if(buffRandomIndex == 0)
+                if(buffRandomIndex == 0) // extra speed
                 {
                     NewMovement.Instance.transform.GetComponent<NewMovement>().walkSpeed *= 1.5f;
                 }
-                if (buffRandomIndex == 1)
+                if (buffRandomIndex == 1) // extra jump
                 {
                     NewMovement.Instance.transform.GetComponent<NewMovement>().jumpPower *= 1.5f;
                 }
-                if (buffRandomIndex == 2)
+                if (buffRandomIndex == 2) // extra hp
                 {
                     NewMovement.Instance.transform.GetComponent<NewMovement>().hp *= 2;
+                }
+            }
+            // ability 4, gatorade
+            else if (abilityIndex == 4)
+            {
+                float sizeRandomIndex = UnityEngine.Random.Range(.2f, 2f);
+                NewMovement.instance.transform.localScale = new Vector3(sizeRandomIndex, sizeRandomIndex, sizeRandomIndex);
+                NewMovement.instance.transform.Find("Main Camera").localScale = new Vector3(1 / sizeRandomIndex, 1 / sizeRandomIndex, 1 / sizeRandomIndex); // inverse of the size 
+                NewMovement.instance.transform.Find("SlopeCheck").localScale = new Vector3(1 / sizeRandomIndex, 1 / sizeRandomIndex, 1 / sizeRandomIndex); // inverse of the size 
+                NewMovement.instance.transform.Find("GroundCheck").localScale = new Vector3(.8f / sizeRandomIndex, .8f / sizeRandomIndex, .85f / sizeRandomIndex); // inverse of the size 
+                if (sizeRandomIndex > 1)
+                {
+                    // makes player bigger if the player will get bigger to make sure the player can touch the ground
+                    NewMovement.instance.transform.Find("SlopeCheck").localScale = new Vector3(1 * sizeRandomIndex, 1 * sizeRandomIndex, 1 * sizeRandomIndex); 
+                    NewMovement.instance.transform.Find("GroundCheck").localScale = new Vector3(.8f * sizeRandomIndex, .8f * sizeRandomIndex, .85f * sizeRandomIndex); 
                 }
             }
 
