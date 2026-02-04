@@ -78,6 +78,11 @@
       <Private>false</Private>
       <CopyLocal>false</CopyLocal>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>$(UltrakillDir)ULTRAKILL_Data/Managed/Newtonsoft.Json.dll</HintPath>
+      <Private>false</Private>
+      <CopyLocal>false</CopyLocal>
+    </Reference>
 	
     <Publicize Include="Assembly-CSharp"/>
   </ItemGroup>
