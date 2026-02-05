@@ -75,11 +75,6 @@ public class EventsCreator : MonoBehaviour
             OptionsManager.instance.Pause();
         });
 
-        EventsManager.AddEvent("Big").AddListener(() =>
-        {
-            NewMovement.instance.transform.localScale *= 2f;
-        });
-
         EventsManager.AddEvent("Smol").AddListener(() =>
         {
             NewMovement.instance.transform.localScale *= 0.5f;
