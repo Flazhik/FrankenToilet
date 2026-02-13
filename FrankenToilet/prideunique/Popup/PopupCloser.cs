@@ -1,7 +1,4 @@
-﻿using FrankenToilet.Core;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -23,7 +20,7 @@ public class PopupCloser : MonoSingleton<PopupCloser>
 
         if (results.Count <= 0)
             return;
-        
+
         foreach(var result in results)
         {
             if (result.gameObject == null)

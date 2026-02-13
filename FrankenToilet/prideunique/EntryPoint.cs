@@ -1,5 +1,4 @@
-﻿using BepInEx;
-using FrankenToilet.Core;
+﻿using FrankenToilet.Core;
 using UnityEngine.SceneManagement;
 using static FrankenToilet.Core.LogHelper;
 

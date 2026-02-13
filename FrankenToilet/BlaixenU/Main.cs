@@ -1,14 +1,11 @@
 
 using FrankenToilet.Core;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using System.Text;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using HarmonyLib;
-using Object = UnityEngine.Object;
 using static FrankenToilet.Core.LogHelper;
 
 namespace FrankenToilet.BlaixenU;
@@ -79,7 +76,7 @@ public static class FUCKMEEEEEEEEEEEEEEEHEEEEEEEELP
     [HarmonyPostfix, HarmonyPatch(typeof(NewMovement), nameof(NewMovement.Start))]
     public static void HEEEEEEEEEEEEEEEEEEEEEEEEEEEEEELP()
     {
-        if (!AssetMan.AssetsLoaded) 
+        if (!AssetMan.AssetsLoaded)
         {
             return;
         }

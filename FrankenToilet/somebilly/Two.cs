@@ -1,26 +1,9 @@
 #pragma warning disable CS8618
-using FrankenToilet;
 using FrankenToilet.Core;
-using BepInEx;
-using BepInEx.Logging;
-using HarmonyLib;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityObject = UnityEngine.Object;
-using UnityEngine.Networking;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
-using UnityEngine.SceneManagement;
-using UnityEngine.Events;
 using UnityEngine.Video;
-using TMPro;
-using System;
-using System.Linq;
-using System.Reflection;
-using System.Reflection.Emit;
 using System.IO;
-using System.Collections;
-using System.Collections.Generic;
 
 
 namespace FrankenToilet.somebilly {
@@ -44,13 +27,13 @@ namespace FrankenToilet.somebilly {
 
             RenderTexture videoTexture = new RenderTexture(374, 210, 16);
             videoTexture.Create();
-            
+
             VideoPlayer video = billboard.AddComponent<VideoPlayer>();
             video.url = videoPath;
             video.targetTexture = videoTexture;
             video.isLooping = true;
             video.playOnAwake = true;
-            
+
             Material mat = new Material(Shader.Find("Unlit/Texture"));
             mat.color = new Color(1, 1, 1, 1);
             mat.mainTexture = videoTexture;

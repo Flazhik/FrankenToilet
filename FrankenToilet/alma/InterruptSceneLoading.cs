@@ -30,7 +30,7 @@ internal class InterruptSceneLoading : MonoBehaviour
         }
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
-    
+
     public static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (SceneHelper.CurrentScene != "Bootstrap")
@@ -39,10 +39,10 @@ internal class InterruptSceneLoading : MonoBehaviour
             {
                 Harmony.CreateAndPatchAll(typeof(InterruptSceneLoading));
             } catch (Exception ex) { LogHelper.LogError(ex); }
-            
+
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
-    }   
+    }
 }
 
 [PatchOnEntry]

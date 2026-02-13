@@ -1,10 +1,8 @@
 ﻿using FrankenToilet.Core;
 using FrankenToilet.flazhik.Assets;
-using FrankenToilet.flazhik.Components;
 using HarmonyLib;
 using TMPro;
 using UnityEngine;
-using static UnityEngine.Object;
 
 namespace FrankenToilet.flazhik.Patches;
 

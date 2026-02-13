@@ -1,8 +1,4 @@
-﻿using FrankenToilet.Core;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace FrankenToilet.prideunique;
@@ -13,7 +9,7 @@ public class TurnDarkOverTime : MonoSingleton<TurnDarkOverTime>
     public bool CreatedCanvas = false;
     private RawImage rawImage;
 
-    public float fadeDuration = 60f * 60f; //1min(60s) * 60 = 1 hour 
+    public float fadeDuration = 60f * 60f; //1min(60s) * 60 = 1 hour
     public float maxAlpha = 0.5f;   // highest alpha allowed
     private float elapsed = 0f;
     private bool fading = false;
@@ -70,7 +66,7 @@ public class TurnDarkOverTime : MonoSingleton<TurnDarkOverTime>
                 float a = Mathf.Lerp(0f, maxAlpha, t);
                 SetAlpha(a);
 
-                if (t >= 1f) 
+                if (t >= 1f)
                     fading = false;
             }
         }

@@ -1,7 +1,4 @@
-using System.Collections;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace FrankenToilet.BlaixenU.UnityScripts;
 
@@ -39,7 +36,7 @@ public class PopupManager : MonoBehaviour
         var popupTrans = popupObject.transform;
         popupTrans.SetParent(UnityPathHelper.FindCanvas().transform);
         var rectTrans = popupObject.GetComponent<RectTransform>();
-        
+
         rectTrans.SetPositionAndRotation(new Vector3(900 + Random.Range(-700, 700), 400 + Random.Range(-300, 300), 0), rectTrans.rotation);
 
         rectTrans.SetAsLastSibling();

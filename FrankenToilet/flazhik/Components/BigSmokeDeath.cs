@@ -1,5 +1,4 @@
-﻿using System;
-using FrankenToilet.flazhik.Assets;
+﻿using FrankenToilet.flazhik.Assets;
 using UnityEngine;
 
 namespace FrankenToilet.flazhik.Components;
