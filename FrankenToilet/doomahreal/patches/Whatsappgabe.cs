@@ -29,18 +29,13 @@ public static class WHATSUPSTAIRS
         __instance.phaseChange = w;
         __instance.phaseChangeSubtitle = "*Whatsapp notification*";
 
-        var body = __instance.transform.Find("gabrielRigged_Swords_Held/body") ?? __instance.transform.Find("gabrielRigged/body");
         var tg = b.LoadAsset<Texture2D>("Assets/Custom/imfrakeninmykill/whatsappgabe/gabenormal.png");
         var tw = b.LoadAsset<Texture2D>("Assets/Custom/imfrakeninmykill/whatsappgabe/normal.png");
-
-        foreach (var r in body.GetComponentsInChildren<Renderer>(true))
-            foreach (var m in r.materials)
-                m.mainTexture = m.name.Contains("GabrielWings") ? tw : m.name.Contains("Gabriel") ? tg : m.mainTexture;
 
         var eb = b.LoadAsset<Texture2D>("Assets/Custom/imfrakeninmykill/whatsappgabe/gameenraged.png");
         var ew = b.LoadAsset<Texture2D>("Assets/Custom/imfrakeninmykill/whatsappgabe/enraged.png");
 
         var g1 = __instance.GetComponent<GabrielBase>();
-        if (g1 != null) { g1.enrageBody.mainTexture = eb; g1.enrageWing.mainTexture = ew; }
+        if (g1 != null) { g1.enrageBody.mainTexture = eb; g1.enrageWing.mainTexture = ew; g1.origBody.mainTexture = tg; g1.origWing.mainTexture = tw; }
     }
 }
