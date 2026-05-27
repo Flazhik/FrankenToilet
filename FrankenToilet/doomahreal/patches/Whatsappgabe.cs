@@ -35,7 +35,7 @@ public static class WHATSUPSTAIRS
         var eb = b.LoadAsset<Texture2D>("Assets/Custom/imfrakeninmykill/whatsappgabe/gameenraged.png");
         var ew = b.LoadAsset<Texture2D>("Assets/Custom/imfrakeninmykill/whatsappgabe/enraged.png");
 
-        var g1 = __instance.GetComponent<GabrielBase>();
-        if (g1 != null) { g1.enrageBody.mainTexture = eb; g1.enrageWing.mainTexture = ew; g1.origBody.mainTexture = tg; g1.origWing.mainTexture = tw; }
+        var g = __instance.GetComponent<GabrielBase>();
+        if (g != null) { g.enrageBody.mainTexture = eb; g.enrageWing.mainTexture = ew; g.origBody.mainTexture = tg; g.origWing.mainTexture = tw; }
     }
 }
