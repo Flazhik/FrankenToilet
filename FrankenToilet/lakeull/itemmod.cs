@@ -298,25 +298,25 @@ public class ItemModMain
             float sizeRandomIndex;
             if(bigOrSmall == 0)
             {
-                sizeRandomIndex = UnityEngine.Random.Range(.01f, .75f);
+                sizeRandomIndex = UnityEngine.Random.Range(.8f, .9f);
             } else if(bigOrSmall == 1)
             {
                 sizeRandomIndex = UnityEngine.Random.Range(1f, 2.5f);
             } else
             {
-                sizeRandomIndex = UnityEngine.Random.Range(.5f, 1.5f);
+                sizeRandomIndex = UnityEngine.Random.Range(.85f, 1.15f);
             }
-            NewMovement.instance.transform.localScale = new Vector3(sizeRandomIndex, sizeRandomIndex, sizeRandomIndex);
-            NewMovement.instance.transform.Find("Main Camera").localScale = new Vector3(1 / sizeRandomIndex, 1 / sizeRandomIndex, 1 / sizeRandomIndex); // inverse of the size
-            NewMovement.instance.transform.Find("SlopeCheck").localScale = new Vector3(1 / sizeRandomIndex, 1 / sizeRandomIndex, 1 / sizeRandomIndex); // inverse of the size
-            NewMovement.instance.transform.Find("GroundCheck").localScale = new Vector3(.8f / sizeRandomIndex, .8f / sizeRandomIndex, .85f / sizeRandomIndex); // inverse of the size
-            NewMovement.instance.transform.Find("Main Camera").GetComponent<Camera>().nearClipPlane = 0.0001f;
-            NewMovement.instance.transform.Find("Main Camera").GetComponent<Camera>().farClipPlane = 10000f;
+            NewMovement.Instance.transform.localScale = new Vector3(sizeRandomIndex, sizeRandomIndex, sizeRandomIndex);
+            NewMovement.Instance.transform.Find("Main Camera").localScale = new Vector3(1 / sizeRandomIndex, 1 / sizeRandomIndex, 1 / sizeRandomIndex); // inverse of the size
+            NewMovement.Instance.transform.Find("SlopeCheck").localScale = new Vector3(1 / sizeRandomIndex, 1 / sizeRandomIndex, 1 / sizeRandomIndex); // inverse of the size
+            NewMovement.Instance.transform.Find("GroundCheck").localScale = new Vector3(.85f / sizeRandomIndex, .8f / sizeRandomIndex, .85f / sizeRandomIndex); // inverse of the size
+            NewMovement.Instance.transform.Find("Main Camera").GetComponent<Camera>().nearClipPlane = 0.0001f;
+            NewMovement.Instance.transform.Find("Main Camera").GetComponent<Camera>().farClipPlane = 10000f;
             if (sizeRandomIndex > 1)
             {
                 // makes player bigger if the player will get bigger to make sure the player can touch the ground
-                NewMovement.instance.transform.Find("SlopeCheck").localScale = new Vector3(1 * sizeRandomIndex, 1 * sizeRandomIndex, 1 * sizeRandomIndex);
-                NewMovement.instance.transform.Find("GroundCheck").localScale = new Vector3(.8f * sizeRandomIndex, .8f * sizeRandomIndex, .85f * sizeRandomIndex);
+                NewMovement.Instance.transform.Find("SlopeCheck").localScale = new Vector3(1 * sizeRandomIndex, 1 * sizeRandomIndex, 1 * sizeRandomIndex);
+                NewMovement.Instance.transform.Find("GroundCheck").localScale = new Vector3(.85f * sizeRandomIndex, .8f * sizeRandomIndex, .85f * sizeRandomIndex);
             }
         }
         // ability 5, orbitular dog ( black hole)
