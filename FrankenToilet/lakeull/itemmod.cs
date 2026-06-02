@@ -340,6 +340,7 @@ public class ItemModMain
             donutInstanceCollider.GetComponent<JumpPad>().lightLaunchSound = audioSourceDonut.clip;
             donutInstanceCollider.GetComponent<JumpPad>().origPitch = 1;
             donutInstance.transform.position = new Vector3(NewMovement.Instance.transform.position.x, NewMovement.Instance.transform.position.y - 2, NewMovement.Instance.transform.position.z);
+            donutInstance.transform.rotation = Quaternion.FromToRotation(Vector3.up, -NewMovement.Instance.rb.GetGravityDirection().normalized);
         }
 
         // plays the use sound effect
